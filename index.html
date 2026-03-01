@@ -1,48 +1,158 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>MP3 to WAV Converter</title>
-  <style>
-    body { font-family: Arial; text-align:center; margin-top:50px; }
-    button { padding:10px 20px; background:green; color:white; border:none; cursor:pointer; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WaveConvert Pro - MP3 to WAV</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+}
+.container {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding:40px;
+  width:100%;
+  max-width:500px;
+  text-align:center;
+  color:white;
+  box-shadow:0 15px 40px rgba(0,0,0,0.2);
+}
+h1 { font-size:28px; font-weight:700; margin-bottom:10px; }
+p { opacity:0.8; margin-bottom:25px; }
+.upload-box {
+  border:2px dashed rgba(255,255,255,0.5);
+  border-radius:15px;
+  padding:30px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.upload-box:hover { background:rgba(255,255,255,0.1); }
+input[type="file"] { display:none; }
+button {
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  font-size:16px;
+  font-weight:600;
+  cursor:pointer;
+  transition:0.3s;
+}
+.convert-btn { background:white; color:#764ba2; }
+.convert-btn:hover { transform:translateY(-2px); }
+.download-btn { background:#00e676; color:white; display:none; margin-top:20px; padding:12px 25px; border-radius:10px; }
+select { width:100%; padding:10px; margin-top:5px; border-radius:8px; border:none; }
+.progress { width:100%; background:rgba(255,255,255,0.2); border-radius:10px; margin-top:20px; height:8px; overflow:hidden; display:none; }
+.progress-bar { height:100%; width:0%; background:#00e676; transition: width 0.3s; }
+audio { width:100%; margin-top:20px; display:none; }
+.status { margin-top:15px; font-size:14px; opacity:0.9; }
+</style>
 </head>
 <body>
 
-<h2>Upload MP3 to Convert to WAV</h2>
+<div class="container">
+  <h1>WaveConvert Pro</h1>
+  <p>Convert MP3 to WAV with custom options</p>
 
-<form id="uploadForm">
-  <input type="file" name="audio" accept=".mp3" required />
-  <br><br>
-  <button type="submit">Convert</button>
-</form>
+  <form id="uploadForm">
+    <label class="upload-box">
+      <span id="fileText">Click or Drag MP3 file here</span>
+      <input type="file" name="audio" id="fileInput" accept=".mp3" required>
+    </label>
 
-<p id="status"></p>
+    <div style="margin-top:20px; text-align:left;">
+      <label>Sample Rate</label>
+      <select name="sampleRate" required>
+        <option value="16000">16 kHz</option>
+        <option value="24000">24 kHz</option>
+        <option value="32000">32 kHz</option>
+        <option value="44100" selected>44.1 kHz</option>
+        <option value="48000">48 kHz</option>
+      </select>
+
+      <label style="margin-top:15px;">Bit Depth</label>
+      <select name="bitDepth" required>
+        <option value="16">16-bit</option>
+        <option value="24">24-bit</option>
+        <option value="32">32-bit</option>
+      </select>
+
+      <label style="margin-top:15px;">Channels</label>
+      <select name="channels" required>
+        <option value="1">Mono</option>
+        <option value="2" selected>Stereo</option>
+      </select>
+    </div>
+
+    <button type="submit" class="convert-btn">Convert to WAV</button>
+  </form>
+
+  <div class="progress">
+    <div class="progress-bar"></div>
+  </div>
+
+  <audio id="audioPreview" controls></audio>
+  <br>
+  <a id="downloadBtn" class="download-btn">Download WAV</a>
+  <div class="status" id="status"></div>
+</div>
 
 <script>
-document.getElementById('uploadForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
+const form = document.getElementById('uploadForm');
+const fileInput = document.getElementById('fileInput');
+const fileText = document.getElementById('fileText');
+const progress = document.querySelector('.progress');
+const progressBar = document.querySelector('.progress-bar');
+const statusText = document.getElementById('status');
+const audioPreview = document.getElementById('audioPreview');
+const downloadBtn = document.getElementById('downloadBtn');
 
-  const formData = new FormData(this);
-  document.getElementById('status').innerText = "Converting...";
+fileInput.addEventListener('change', () => {
+  fileText.textContent = fileInput.files[0].name;
+});
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+
+  progress.style.display = "block";
+  progressBar.style.width = "30%";
+  statusText.innerText = "Uploading...";
 
   const response = await fetch('/convert', {
     method: 'POST',
     body: formData
   });
 
+  progressBar.style.width = "80%";
+  statusText.innerText = "Processing...";
+
   if (response.ok) {
     const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
+    const url = URL.createObjectURL(blob);
 
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "converted.wav";
-    a.click();
+    progressBar.style.width = "100%";
+    statusText.innerText = "Conversion Complete 🎉";
 
-    document.getElementById('status').innerText = "Download started!";
+    audioPreview.src = url;
+    audioPreview.style.display = "block";
+
+    downloadBtn.href = url;
+    downloadBtn.download = "converted.wav";
+    downloadBtn.style.display = "inline-block";
   } else {
-    document.getElementById('status').innerText = "Conversion failed.";
+    statusText.innerText = "Conversion failed.";
   }
 });
 </script>
