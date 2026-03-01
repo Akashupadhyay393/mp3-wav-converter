@@ -1,7 +1,7 @@
 {
   "name": "mp3-wav-converter",
   "version": "1.0.0",
-  "description": "MP3 to WAV Converter",
+  "description": "Professional MP3 to WAV converter with sample rate, bit depth, and channels options",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
