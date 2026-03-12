@@ -3,43 +3,51 @@ const multer = require('multer');
 const ffmpeg = require('fluent-ffmpeg');
 const ffmpegPath = require('ffmpeg-static');
 const fs = require('fs');
+const path = require('path');
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
 ffmpeg.setFfmpegPath(ffmpegPath);
 
-// Serve frontend
-app.use(express.static(__dirname));
+// Serve frontend from public folder
+app.use(express.static('public'));
 
-// Convert route
 app.post('/convert', upload.single('audio'), (req, res) => {
+  if (!req.file) return res.status(400).send('No file uploaded');
+
   const inputPath = req.file.path;
   const outputPath = inputPath + '.wav';
 
-  const sampleRate = req.body.sampleRate; // e.g., 44100
-  const bitDepth = req.body.bitDepth;     // 16, 24, 32
-  const channels = req.body.channels;     // 1 = Mono, 2 = Stereo
+  // Use defaults if not provided
+  const sampleRate = req.body.sampleRate || 44100;
+  const bitDepth = req.body.bitDepth || "16";
+  const channels = req.body.channels || 2;
 
   let codec;
   if (bitDepth === "16") codec = "pcm_s16le";
-  if (bitDepth === "24") codec = "pcm_s24le";
-  if (bitDepth === "32") codec = "pcm_s32le";
+  else if (bitDepth === "24") codec = "pcm_s24le";
+  else if (bitDepth === "32") codec = "pcm_s32le";
+  else codec = "pcm_s16le"; // default fallback
 
   ffmpeg(inputPath)
-    .audioFrequency(sampleRate)
-    .audioChannels(channels)
+    .audioFrequency(Number(sampleRate))
+    .audioChannels(Number(channels))
     .audioCodec(codec)
     .format('wav')
     .on('end', () => {
-      res.download(outputPath, 'converted.wav', () => {
+      res.download(outputPath, 'converted.wav', (err) => {
         fs.unlinkSync(inputPath);
         fs.unlinkSync(outputPath);
+        if (err) console.error('Download error:', err);
       });
     })
     .on('error', (err) => {
-      console.error(err);
+      console.error('Conversion error:', err);
       res.status(500).send('Conversion error');
+      // Cleanup on error
+      if (fs.existsSync(inputPath)) fs.unlinkSync(inputPath);
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
     })
     .save(outputPath);
 });
