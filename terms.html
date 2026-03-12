@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms & Conditions | AudioConvert</title>
+<meta name="description" content="Read the Terms & Conditions for using AudioConvert, a free MP3 to WAV converter.">
+<style>
+/* Same CSS as above */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+header{background:#111;color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;}
+.logo{font-size:22px;font-weight:bold;}
+nav a{color:white;margin-left:20px;text-decoration:none;}
+.menu-toggle{font-size:26px;cursor:pointer;display:none;}
+.container{max-width:900px;margin:auto;padding:40px 20px;}
+footer{background:#111;color:white;text-align:center;padding:20px;margin-top:40px;}
+footer a{color:#aaa;margin:0 10px;text-decoration:none;}
+footer a:hover{color:white;}
+@media(max-width:768px){.menu-toggle{display:block;}nav{display:none;position:absolute;top:60px;left:0;width:100%;background:#111;flex-direction:column;text-align:center;}nav a{display:block;padding:15px;border-top:1px solid #333;}nav.active{display:flex;}}
+.content{line-height:1.7;margin-top:30px;}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">AudioConvert</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav id="navMenu">
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+<a href="/contact.html">Contact</a>
+<a href="/privacy.html">Privacy</a>
+</nav>
+</header>
+
+<div class="container content">
+<h1>Terms & Conditions</h1>
+<p>By using AudioConvert, you agree to follow these terms. You may only use the converter for lawful purposes and must not upload copyrighted files without permission.</p>
+<h2>Intellectual Property</h2>
+<p>All content and functionality of this website are owned by AudioConvert unless otherwise stated.</p>
+<h2>Service Availability</h2>
+<p>We do not guarantee uninterrupted access, but strive to keep the service available at all times.</p>
+<h2>Limitation of Liability</h2>
+<p>We are not responsible for any data loss or damages resulting from the use of this website.</p>
+<h2>Changes</h2>
+<p>We may update these terms at any time. Continued use indicates acceptance.</p>
+</div>
+
+<footer>
+<p>
+<a href="/about.html">About</a> |
+<a href="/privacy.html">Privacy Policy</a> |
+<a href="/terms.html">Terms</a> |
+<a href="/contact.html">Contact</a>
+</p>
+<p>© 2026 AudioConvert</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById("navMenu").classList.toggle("active");}
+</script>
+
+</body>
+</html>

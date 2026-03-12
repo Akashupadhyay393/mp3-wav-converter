@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer | AudioConvert</title>
+<meta name="description" content="Disclaimer for AudioConvert online MP3 to WAV converter.">
+<style>
+/* Same CSS as above */
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif;}
+header{background:#111;color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:1000;}
+.logo{font-size:22px;font-weight:bold;}
+nav a{color:white;margin-left:20px;text-decoration:none;}
+.menu-toggle{font-size:26px;cursor:pointer;display:none;}
+.container{max-width:900px;margin:auto;padding:40px 20px;}
+footer{background:#111;color:white;text-align:center;padding:20px;margin-top:40px;}
+footer a{color:#aaa;margin:0 10px;text-decoration:none;}
+footer a:hover{color:white;}
+@media(max-width:768px){.menu-toggle{display:block;}nav{display:none;position:absolute;top:60px;left:0;width:100%;background:#111;flex-direction:column;text-align:center;}nav a{display:block;padding:15px;border-top:1px solid #333;}nav.active{display:flex;}}
+.content{line-height:1.7;margin-top:30px;}
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo">AudioConvert</div>
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+<nav id="navMenu">
+<a href="/">Home</a>
+<a href="/about.html">About</a>
+<a href="/contact.html">Contact</a>
+<a href="/privacy.html">Privacy</a>
+</nav>
+</header>
+
+<div class="container content">
+<h1>Disclaimer</h1>
+<p>AudioConvert provides an online tool to convert MP3 files to WAV format. Users are responsible for ensuring they have the rights to the files they upload. We do not host copyrighted files. The service is provided "as-is" without any guarantees regarding accuracy or reliability.</p>
+</div>
+
+<footer>
+<p>
+<a href="/about.html">About</a> |
+<a href="/privacy.html">Privacy Policy</a> |
+<a href="/terms.html">Terms</a> |
+<a href="/contact.html">Contact</a>
+</p>
+<p>© 2026 AudioConvert</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById("navMenu").classList.toggle("active");}
+</script>
+
+</body>
+</html>
