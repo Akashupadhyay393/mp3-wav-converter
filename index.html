@@ -391,7 +391,9 @@ document.getElementById("progressBar").style.width="40%";
 document.getElementById('status').innerText="Converting...";
 
 const formData=new FormData(this);
-
+formData.append('sampleRate', '44100'); // standard CD quality
+formData.append('bitDepth', '16');      // 16-bit depth
+formData.append('channels', '2');       // stereo
 const response=await fetch('/convert',{
 method:'POST',
 body:formData
@@ -423,3 +425,4 @@ document.getElementById('status').innerText="Conversion failed.";
 
 </body>
 </html>
+
