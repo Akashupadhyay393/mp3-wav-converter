@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Free MP3 to WAV Converter | Fast Online Audio Converter</title>
-
-<meta name="description" content="Convert MP3 to WAV online for free. Fast, secure and high quality MP3 to WAV converter tool.">
-
+<title>Free Audio Converter | MP3 WAV FLAC Online</title>
 <style>
-
+/* ===============================
+GLOBAL
+=============================== */
 *{
 margin:0;
 padding:0;
@@ -20,11 +16,10 @@ font-family:Arial, Helvetica, sans-serif;
 }
 
 /* HEADER */
-
 header{
 background:#111;
 color:white;
-padding:15px 20px;
+padding:10px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -32,52 +27,27 @@ position:sticky;
 top:0;
 z-index:1000;
 }
-
-.logo{
-font-size:22px;
-font-weight:bold;
-}
-
-nav a{
-color:white;
-margin-left:20px;
-text-decoration:none;
-}
-
-.menu-toggle{
-font-size:26px;
-cursor:pointer;
-display:none;
-}
+.logo{font-size:22px;font-weight:bold;}
+nav a{color:white;margin-left:20px;text-decoration:none;}
+.menu-toggle{font-size:26px;cursor:pointer;display:none;}
 
 /* HERO */
-
 .hero{
-padding:60px 20px;
+padding:20px 20px;
 background:linear-gradient(135deg,#1f2937,#111);
 color:white;
 text-align:center;
 }
-
-.hero h1{
-font-size:36px;
-margin-bottom:10px;
-}
-
-.hero p{
-opacity:0.9;
-}
+.hero h1{font-size:px;margin-bottom:10px;}
 
 /* MAIN */
-
 .container{
 max-width:900px;
 margin:auto;
-padding:40px 20px;
+padding:5px 20px;
 }
 
-/* CONVERTER */
-
+/* CONVERTER BOX */
 .converter-box{
 background:white;
 padding:40px;
@@ -86,6 +56,7 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 text-align:center;
 }
 
+/* UPLOAD AREA */
 .upload-area{
 border:2px dashed #ccc;
 padding:40px;
@@ -94,18 +65,11 @@ background:#fafafa;
 cursor:pointer;
 margin-bottom:20px;
 }
-
 .upload-area:hover{
 border-color:#28a745;
 background:#f1fff5;
 }
-
-/* Custom file button */
-
-.upload-area input[type="file"]{
-display:none;
-}
-
+.upload-area input{display:none;}
 .custom-file-upload{
 display:inline-block;
 padding:12px 25px;
@@ -116,21 +80,30 @@ border-radius:6px;
 font-weight:bold;
 margin-top:10px;
 }
+#fileName{margin-top:10px;color:#333;}
 
-.custom-file-upload:hover{
-background:#218838;
-}
-
-#fileName{
-word-wrap: break-word;
-max-width:100%;
+/* BUTTON OPTIONS STYLE */
+.options{
+margin-top:5px;
 text-align:center;
-margin-top:10px;
-color:#333;
+}
+.options .option{
+display:inline-block;
+padding:5px 18px;
+border:1px solid #ccc;
+border-radius:4px;
+margin:5px;
+cursor:pointer;
+transition: 0.2s;
+user-select:none;
+}
+.options .option.active{
+background:#2563eb;
+color:white;
+border-color:#2563eb;
 }
 
-/* BUTTON */
-
+/* BUTTONS */
 button{
 margin-top:20px;
 padding:12px 28px;
@@ -141,13 +114,15 @@ background:#28a745;
 color:white;
 cursor:pointer;
 }
-
-button:hover{
-background:#218838;
+button:hover{background:#218838;}
+#resetBtn{
+background:#007bff;
+display:none;
+margin-left:10px;
 }
+#resetBtn:hover{background:#0056b3;}
 
-/* PROGRESS */
-
+/* PROGRESS BAR */
 .progress{
 width:100%;
 background:#eee;
@@ -156,7 +131,6 @@ border-radius:5px;
 margin-top:20px;
 overflow:hidden;
 }
-
 .progress-bar{
 height:100%;
 width:0%;
@@ -165,14 +139,12 @@ transition: width 0.4s;
 }
 
 /* FEATURES */
-
 .features{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 margin-top:50px;
 }
-
 .feature{
 background:white;
 padding:20px;
@@ -180,15 +152,7 @@ border-radius:10px;
 box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
-/* CONTENT */
-
-.content{
-margin-top:40px;
-line-height:1.7;
-}
-
 /* FOOTER */
-
 footer{
 background:#111;
 color:white;
@@ -197,102 +161,89 @@ padding:20px;
 margin-top:40px;
 }
 
-footer a{
-color:#aaa;
-margin:0 10px;
-text-decoration:none;
-}
-
-footer a:hover{
-color:white;
-}
-
 /* MOBILE */
-
 @media (max-width:768px){
-
-.menu-toggle{
-display:block;
-}
-
-nav{
-display:none;
-position:absolute;
-top:60px;
-left:0;
-width:100%;
-background:#111;
-flex-direction:column;
-text-align:center;
-}
-
-nav a{
-display:block;
-padding:15px;
-border-top:1px solid #333;
-}
-
-nav.active{
-display:flex;
-}
-
-.content{
-text-align:justify;
-}
-
+.menu-toggle{display:block;}
+nav{display:none;position:absolute;top:60px;left:0;width:100%;background:#111;flex-direction:column;text-align:center;}
+nav a{display:block;padding:15px;border-top:1px solid #333;}
+nav.active{display:flex;}
 }
 
 </style>
-
 </head>
-
 <body>
 
 <header>
-
 <div class="logo">AudioConvert</div>
-
 <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
 <nav id="navMenu">
 <a href="/">Home</a>
 <a href="/about.html">About</a>
 <a href="/contact.html">Contact</a>
 <a href="/privacy.html">Privacy</a>
 </nav>
-
 </header>
 
-
 <section class="hero">
-
-<h1>Free MP3 to WAV Converter</h1>
-<p>Convert MP3 files to high-quality WAV format instantly. Fast, secure and free.</p>
-
+<h1>Free Audio Converter</h1>
+<p>Convert audio files instantly. Fast, secure and high quality.</p>
 </section>
-
 
 <div class="container">
 
 <div class="converter-box">
-
 <form id="uploadForm">
 
-<div class="upload-area" id="uploadArea">
-
-<p>Drag & Drop MP3 File</p>
-<p>or</p>
-
-<label class="custom-file-upload">
-Choose File
-<input type="file" name="audio" accept=".mp3" required id="fileInput">
+<!-- UPLOAD FILE -->
+<div class="upload-area">
+<p>Upload Audio File</p>
+<label class="custom-file-upload">Choose File
+<input type="file" name="audio" id="fileInput" required>
 </label>
-
 <p id="fileName"></p>
-
 </div>
 
-<button type="submit">Convert to WAV</button>
+<!-- OUTPUT FORMAT -->
+<div class="options" data-type="format">
+<p><strong>Output Format:</strong></p>
+<div class="option active">wav</div>
+<div class="option">mp3</div>
+<div class="option">aac</div>
+<div class="option">m4a</div>
+<div class="option">ogg</div>
+<div class="option">flac</div>
+<div class="option">opus</div>
+</div>
+
+<!-- CHANNELS -->
+<div class="options" data-type="channels">
+<p><strong>Channels:</strong></p>
+<div class="option active">original</div>
+<div class="option">mono</div>
+<div class="option">stereo</div>
+</div>
+
+<!-- SAMPLE RATE -->
+<div class="options" data-type="sampleRate">
+<p><strong>Sample Rate:</strong></p>
+<div class="option active" data-value="original">Original</div>
+<div class="option" data-value="16000">16 kHz</div>
+<div class="option" data-value="24000">24 kHz</div>
+<div class="option" data-value="32000">32 kHz</div>
+<div class="option" data-value="44100">44.1 kHz</div>
+<div class="option" data-value="48000">48 kHz</div>
+</div>
+
+<!-- BIT DEPTH -->
+<div class="options" data-type="bitDepth">
+<p><strong>Bit Depth:</strong></p>
+<div class="option active" data-value="16">16-bit</div>
+<div class="option" data-value="24">24-bit</div>
+<div class="option" data-value="32">32-bit</div>
+</div>
+
+<button type="submit">Convert Audio</button>
+<button type="button" id="resetBtn">Convert Another File</button>
 
 </form>
 
@@ -303,123 +254,79 @@ Choose File
 <p id="status"></p>
 
 </div>
-
-
-<section class="features">
-
-<div class="feature">
-<h3>⚡ Fast Conversion</h3>
-<p>Convert MP3 files to WAV within seconds.</p>
 </div>
-
-<div class="feature">
-<h3>🔒 Secure</h3>
-<p>Your files are automatically deleted after conversion.</p>
-</div>
-
-<div class="feature">
-<h3>📱 Mobile Friendly</h3>
-<p>Use the converter on any device including phones and tablets.</p>
-</div>
-
-</section>
-
-
-<div class="content">
-
-<h2>What is an MP3 to WAV Converter?</h2>
-
-<p>
-An MP3 to WAV converter allows users to convert compressed MP3 audio files into the WAV format.
-WAV files are commonly used in professional audio editing and music production because they retain
-more audio information compared to compressed formats.
-</p>
-
-<h2>Why Convert MP3 to WAV?</h2>
-
-<ul>
-<li>Better compatibility with audio editing software</li>
-<li>Higher quality for sound editing</li>
-<li>Preferred format for professional audio projects</li>
-<li>More accurate audio waveform data</li>
-</ul>
-
-</div>
-
-</div>
-
 
 <footer>
-
-<p>
-<a href="/about.html">About</a> |
-<a href="/privacy.html">Privacy Policy</a> |
-<a href="/terms.html">Terms</a> |
-<a href="/contact.html">Contact</a>
-</p>
-
 <p>© 2026 AudioConvert</p>
-
 </footer>
 
-
 <script>
+// MOBILE MENU
+function toggleMenu(){document.getElementById("navMenu").classList.toggle("active");}
 
-// Hamburger menu toggle
-function toggleMenu(){
-document.getElementById("navMenu").classList.toggle("active");
-}
+// SHOW FILE NAME
+const fileInput=document.getElementById("fileInput");
+const fileName=document.getElementById("fileName");
+fileInput.addEventListener("change",function(){if(this.files.length>0){fileName.textContent=this.files[0].name;}});
 
-// Show selected file name
-const fileInput = document.getElementById("fileInput");
-const fileName = document.getElementById("fileName");
-
-fileInput.addEventListener("change", function(){
-  if(this.files && this.files.length > 0){
-    fileName.textContent = this.files[0].name;
-  } else {
-    fileName.textContent = "";
-  }
+// RESET BUTTON
+const resetBtn=document.getElementById("resetBtn");
+resetBtn.addEventListener("click",function(){
+document.getElementById("uploadForm").reset();
+fileName.textContent="";
+document.getElementById("status").innerText="";
+document.getElementById("progressBar").style.width="0%";
+resetBtn.style.display="none";
 });
 
-// Form submission
-document.getElementById('uploadForm').addEventListener('submit', async function(e){
+// BUTTON OPTIONS LOGIC
+let settings={
+format:"wav",
+channels:"original",
+sampleRate:"original",
+bitDepth:"16"
+};
 
+document.querySelectorAll(".options").forEach(group=>{
+let type=group.dataset.type;
+group.querySelectorAll(".option").forEach(btn=>{
+btn.addEventListener("click",()=>{
+group.querySelectorAll(".option").forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+settings[type]=btn.dataset.value || btn.innerText;
+});
+});
+});
+
+// FORM SUBMIT
+document.getElementById("uploadForm").addEventListener("submit",async function(e){
 e.preventDefault();
-
 document.getElementById("progressBar").style.width="40%";
-document.getElementById('status').innerText="Converting...";
-
+document.getElementById("status").innerText="Converting...";
 const formData=new FormData(this);
-
-const response=await fetch('/convert',{
-method:'POST',
-body:formData
-});
-
+formData.append("format",settings.format);
+formData.append("channels",settings.channels);
+formData.append("sampleRate",settings.sampleRate);
+formData.append("bitDepth",settings.bitDepth);
+const originalName=fileInput.files[0].name;
+const baseName=originalName.substring(0,originalName.lastIndexOf("."))||originalName;
+try{
+const response=await fetch("/convert",{method:"POST",body:formData});
 document.getElementById("progressBar").style.width="100%";
-
 if(response.ok){
-
 const blob=await response.blob();
-const url=window.URL.createObjectURL(blob);
-
-const a=document.createElement('a');
+const url=URL.createObjectURL(blob);
+const a=document.createElement("a");
 a.href=url;
-a.download="converted.wav";
+a.download=baseName+"."+settings.format;
 a.click();
-
-document.getElementById('status').innerText="Download started!";
-
+document.getElementById("status").innerText="Download started!";
+resetBtn.style.display="inline-block";
 }else{
-
-document.getElementById('status').innerText="Conversion failed.";
-
+document.getElementById("status").innerText="Conversion failed.";
 }
-
+}catch(err){document.getElementById("status").innerText="Server error.";}
 });
-
 </script>
-
 </body>
 </html>
