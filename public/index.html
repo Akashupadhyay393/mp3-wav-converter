@@ -327,6 +327,13 @@ document.getElementById("status").innerText="Conversion failed.";
 }
 }catch(err){document.getElementById("status").innerText="Server error.";}
 });
+
+// Ping backend every 4 minutes to prevent sleeping
+setInterval(() => {
+    fetch('/').then(() => console.log('Pinged server to stay awake'));
+}, 240000); // 4 minutes
+
 </script>
 </body>
 </html>
+
